@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import "./Item.css";
 
-const Items = ({ image, name, newPrice, oldPrice }) => {
+const Items = ({ image, name, newPrice, oldPrice, id }) => {
   return (
     <div className="item">
-      <img src={image} alt="" />
+      <Link to={`/product/${id}`}>
+        <img onClick={window.scrollTo(0, 200)} src={image} alt="image" />
+      </Link>
       <p>{name}</p>
       <div className="itemPrices">
         <div className="itemPricesNew">${newPrice}</div>

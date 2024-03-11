@@ -1,0 +1,69 @@
+.loginSignup {
+  width: 100%;
+  /* height: 80vh; */
+  background-color: #fce3fe;
+  padding: 6.25rem 0;
+  /* margin-bottom: 5rem; */
+}
+
+.loginSignupContainer {
+  width: 36.25rem;
+  height: 37.5rem;
+  background-color: #fff;
+  margin: auto;
+  padding: 2.5rem 3.75rem;
+
+  h1 {
+    margin: 1.25rem 0;
+  }
+  button {
+    width: 36.25rem;
+    height: 4.5rem;
+    color: #fff;
+    background-color: #ff4141;
+    margin-top: 1.875rem;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+.loginSignupFields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8125rem;
+  margin-top: 1.875rem;
+
+  input {
+    height: 4.5rem;
+    width: 100%;
+    padding-left: 1.25rem;
+    border: 1px solid #c9c9c9;
+    outline: none;
+    color: #5c5c5c;
+    font-size: 1.125rem;
+  }
+}
+
+.loginSignupLogin {
+  margin-top: 1.25rem;
+  color: #5c5c5c;
+  font-size: 1.125rem;
+  font-weight: 500;
+  span {
+    color: #ff4141;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.loginSignupAgree {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5625rem;
+  gap: 1.25rem;
+  color: #5c5c5c;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
