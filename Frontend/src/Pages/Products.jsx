@@ -9,6 +9,7 @@ import RelatedProducts from "../RelatedProducts/RelatedProducts";
 const Products = () => {
   const { all_product } = useContext(ShopContext);
   const { productId } = useParams();
+  // console.log(productId);
   const product = all_product.find((item) => item.id === +productId);
 
   return (

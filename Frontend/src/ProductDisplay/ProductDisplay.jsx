@@ -3,6 +3,7 @@ import starIcon from "../assets/star_icon.png";
 import starDullIcon from "../assets/star_dull_icon.png";
 import { useContext } from "react";
 import { ShopContext } from "../Context/ShopContext";
+import { Link } from "react-router-dom";
 
 const ProductDisplay = ({ product }) => {
   const { addToCart } = useContext(ShopContext);
@@ -57,7 +58,9 @@ const ProductDisplay = ({ product }) => {
             <div>XXL</div>
           </div>
         </div>
+
         <button onClick={() => addToCart(product.id)}>ADD TO CART</button>
+
         <p className="productDisplayRightCategory">
           <span>Category : </span>Women, T-shirt, Crop-top
         </p>

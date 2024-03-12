@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import all_product from "../assets/all_product";
 
 export const ShopContext = createContext(null);
@@ -15,15 +15,58 @@ const ShopContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(getDefaultCard());
 
   // console.log(cartItems);
-  const addToCart = (itemId) => {
-    setCartItems((prevVal) => ({ ...prevVal, [itemId]: prevVal[itemId] + 1 }));
-    console.log(cartItems);
+  const addToCart = (itemId = null) => {
+    // console.log(itemId);
+    setCartItems((prevVal) => {
+      if (!itemId) {
+        return cartItems;
+      }
+      return {
+        ...prevVal,
+        [itemId]: prevVal[itemId] + 1,
+      };
+    });
+    // setCartItems({ ...cartItems, [itemId]: cartItems[itemId] + 1 });
+    // console.log(cartItems);
   };
+
+  useEffect(() => {
+    addToCart();
+  }, [cartItems]);
+
   const removeFromCart = (itemId) => {
     setCartItems((prevVal) => ({ ...prevVal, [itemId]: prevVal[itemId] - 1 }));
   };
 
-  const contextValue = { all_product, cartItems, addToCart, removeFromCart };
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        let itemInfo = all_product.find((product) => product.id === +item);
+        totalAmount += itemInfo.new_price * cartItems[item];
+      }
+    }
+    return totalAmount;
+  };
+
+  const getTotalCartItems = () => {
+    let totalItem = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        totalItem += cartItems[item];
+      }
+    }
+    return totalItem;
+  };
+
+  const contextValue = {
+    all_product,
+    cartItems,
+    addToCart,
+    removeFromCart,
+    getTotalCartAmount,
+    getTotalCartItems,
+  };
 
   return (
     <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
