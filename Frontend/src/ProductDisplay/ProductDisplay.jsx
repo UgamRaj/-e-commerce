@@ -1,12 +1,17 @@
 import "./ProductDisplay.css";
 import starIcon from "../assets/star_icon.png";
 import starDullIcon from "../assets/star_dull_icon.png";
-import { useContext } from "react";
-import { ShopContext } from "../Context/ShopContext";
-import { Link } from "react-router-dom";
+// import { useContext } from "react";
+// import { ShopContext } from "../Context/ShopContext";
+// import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../Store/ProductSlice";
 
 const ProductDisplay = ({ product }) => {
-  const { addToCart } = useContext(ShopContext);
+  // const { addToCart } = useContext(ShopContext);
+  const { cartItems } = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+  console.log(cartItems);
 
   return (
     <div className="productDisplay">
@@ -59,7 +64,10 @@ const ProductDisplay = ({ product }) => {
           </div>
         </div>
 
-        <button onClick={() => addToCart(product.id)}>ADD TO CART</button>
+        {/* <button onClick={() => addToCart(product.id)}>ADD TO CART</button> */}
+        <button onClick={() => dispatch(addToCart(product.id))}>
+          ADD TO CART
+        </button>
 
         <p className="productDisplayRightCategory">
           <span>Category : </span>Women, T-shirt, Crop-top

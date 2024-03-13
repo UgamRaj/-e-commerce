@@ -47,4 +47,8 @@
   align-items: center;
   justify-content: flex-end;
   padding-top: 3.125rem;
+  width: 50%;
+  img {
+    width: 50%;
+  }
 }

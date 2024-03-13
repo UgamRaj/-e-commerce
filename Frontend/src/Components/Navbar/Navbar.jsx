@@ -1,13 +1,28 @@
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import cartIcon from "../../assets/cart_icon.png";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShopContext } from "../../Context/ShopContext";
+// import { ShopContext } from "../../Context/ShopContext";
+import { useSelector } from "react-redux";
+// import { getTotalCartItems } from "../../Store/ProductSlice";
 
 const Navbar = () => {
   const [menu, setmenu] = useState("shop");
-  const { getTotalCartItems } = useContext(ShopContext);
+  // const { getTotalCartItems } = useContext(ShopContext);
+  const { cartItems } = useSelector((state) => state.product);
+  // console.log(cartItems);
+  // const dispatch = useDispatch();
+
+  const getTotalCartItems = () => {
+    let totalItem = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        totalItem += cartItems[item];
+      }
+    }
+    return totalItem;
+  };
 
   return (
     <div className="navbar">
@@ -25,19 +40,19 @@ const Navbar = () => {
         <li onClick={() => setmenu("mens")}>
           <Link style={{ textDecoration: "none" }} to="/mens">
             Men
-          </Link>{" "}
+          </Link>
           {menu === "mens" && <hr />}
         </li>
         <li onClick={() => setmenu("womens")}>
           <Link style={{ textDecoration: "none" }} to="/womens">
             Women
-          </Link>{" "}
+          </Link>
           {menu === "womens" && <hr />}
         </li>
         <li onClick={() => setmenu("kids")}>
           <Link style={{ textDecoration: "none" }} to="/kids">
             Kids
-          </Link>{" "}
+          </Link>
           {menu === "kids" && <hr />}
         </li>
       </ul>

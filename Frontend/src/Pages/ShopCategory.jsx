@@ -1,11 +1,12 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import "./ShopCategory.css";
-import { ShopContext } from "../Context/ShopContext";
+// import { ShopContext } from "../Context/ShopContext";
 import dropDownIcon from "../assets/dropdown_icon.png";
 import Items from "../Components/Items/Item";
+import all_product from "../assets/all_product";
 
 const ShopCategory = ({ banner, mainCategory }) => {
-  const { all_product } = useContext(ShopContext);
+  // const { all_product } = useContext(ShopContext);
 
   return (
     <div className="shopCategory">

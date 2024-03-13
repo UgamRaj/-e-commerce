@@ -1,11 +1,30 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import "./CartItems.css";
-import { ShopContext } from "../../Context/ShopContext";
+// import { ShopContext } from "../../Context/ShopContext";
 import removeIcon from "../../assets/cart_cross_icon.png";
+import all_product from "../../assets/all_product";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../../Store/ProductSlice";
 
 const CartItems = () => {
-  const { all_product, cartItems, removeFromCart, getTotalCartAmount } =
-    useContext(ShopContext);
+  const { cartItems } = useSelector((state) => state.product);
+  console.log(cartItems);
+  const dispatch = useDispatch();
+
+  const getTotalCartAmount = () => {
+    let totalAmount = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        let itemInfo = all_product.find((product) => product.id === +item);
+        totalAmount += itemInfo.new_price * cartItems[item];
+      }
+    }
+    return totalAmount;
+  };
+
+  // const { all_product, cartItems, removeFromCart, getTotalCartAmount } =
+  //   useContext(ShopContext);
+
   //   console.log(all_product);
 
   return (
@@ -34,7 +53,7 @@ const CartItems = () => {
                 <p>${item.new_price * cartItems[item.id]}</p>
                 <img
                   className="cartItemsRemoveIcon"
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => dispatch(removeFromCart(item.id))}
                   src={removeIcon}
                   alt="remove icon"
                 />
