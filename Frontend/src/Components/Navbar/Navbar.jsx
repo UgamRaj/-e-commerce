@@ -1,7 +1,8 @@
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import cartIcon from "../../assets/cart_icon.png";
-import { useState } from "react";
+import navDropdown from "../../assets/nav_dropdown.png";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 // import { ShopContext } from "../../Context/ShopContext";
 import { useSelector } from "react-redux";
@@ -11,8 +12,12 @@ const Navbar = () => {
   const [menu, setmenu] = useState("shop");
   // const { getTotalCartItems } = useContext(ShopContext);
   const { cartItems } = useSelector((state) => state.product);
-  // console.log(cartItems);
-  // const dispatch = useDispatch();
+  const menuRef = useRef();
+
+  const dropDownToggle = (e) => {
+    menuRef.current.classList.toggle("navMenuVisible");
+    e.target.classList.toggle("open");
+  };
 
   const getTotalCartItems = () => {
     let totalItem = 0;
@@ -30,7 +35,13 @@ const Navbar = () => {
         <img src={logo} alt="logo" />
         <p>CLOTH WORLD</p>
       </div>
-      <ul className="navMenu">
+      <img
+        onClick={dropDownToggle}
+        className="navDropdown"
+        src={navDropdown}
+        alt="navdropdown"
+      />
+      <ul ref={menuRef} className="navMenu">
         <li onClick={() => setmenu("shop")}>
           <Link style={{ textDecoration: "none" }} to="/">
             Shop

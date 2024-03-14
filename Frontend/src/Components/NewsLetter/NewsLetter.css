@@ -48,3 +48,101 @@
     cursor: pointer;
   }
 }
+
+@media (max-width: 1280px) {
+  .newsLetter {
+    padding: 0 5rem;
+    margin-bottom: 7.5rem;
+    gap: 1.25rem;
+    h1 {
+      font-size: 2.25rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+    div {
+      width: 37.5rem;
+      height: 3.75rem;
+    }
+    .input {
+      width: 25rem;
+    }
+    button {
+      width: 10rem;
+      height: 3.75rem;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  .newsLetter {
+    margin-bottom: 4rem;
+    h1 {
+      font-size: 1.875rem;
+    }
+    p {
+      font-size: 14px;
+    }
+    div {
+      width: 31.25rem;
+      height: 3.125rem;
+    }
+    .input {
+      width: 18.75rem;
+      font-size: 0.875rem;
+    }
+    button {
+      width: 7.5rem;
+      height: 3.125rem;
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 800px) {
+  .newsLetter {
+    margin-bottom: 1.875rem;
+    height: 35vh;
+    h1 {
+      font-size: 1.125rem;
+    }
+    p {
+      font-size: 12px;
+    }
+    div {
+      width: 25rem;
+      height: 2.5rem;
+    }
+    .input {
+      width: 12.5rem;
+      font-size: 13px;
+    }
+    button {
+      width: 6.25rem;
+      height: 2.5rem;
+      font-size: 12px;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .newsLetter {
+    margin-bottom: 1.875rem;
+    height: 25vh;
+    width: 100%;
+    padding: 0;
+    gap: 15px;
+    h1 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 13px;
+      max-width: 12.5rem;
+      text-align: center;
+    }
+    div {
+      width: 18.125rem;
+      height: 2.5rem;
+    }
+    .input {
+      width: 8.125rem;
+    }
+  }
+}

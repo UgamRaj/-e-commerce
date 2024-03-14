@@ -1,5 +1,8 @@
 .item {
-  width: 21.875rem;
+  width: 17.5rem;
+  img {
+    width: 17.5rem;
+  }
   p {
     margin: 0.375rem 0;
   }
@@ -25,4 +28,53 @@
   font-size: 1.125rem;
   font-weight: 500;
   text-decoration: line-through;
+}
+
+@media (max-width: 1280px) {
+  .item {
+    width: 13.75rem;
+    font-size: 0.875rem;
+    img {
+      width: 13.75rem;
+    }
+  }
+  .itemPricesOld,
+  .itemPricesNew {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .item {
+    width: 10.625rem;
+    font-size: 0.8125rem;
+    img {
+      width: 10.625rem;
+    }
+  }
+  .itemPricesOld,
+  .itemPricesNew {
+    font-size: 0.8125rem;
+  }
+}
+@media (max-width: 800px) {
+  .item {
+    width: 7.5rem;
+    font-size: 0.75rem;
+    img {
+      width: 7.5rem;
+    }
+  }
+  .itemPricesOld,
+  .itemPricesNew {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 500px) {
+  .item {
+    width: 10rem;
+    img {
+      width: 10rem;
+    }
+  }
 }

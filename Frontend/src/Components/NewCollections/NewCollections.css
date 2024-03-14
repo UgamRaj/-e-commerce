@@ -24,3 +24,55 @@
   margin-top: 3.125rem;
   gap: 1.875rem;
 }
+
+@media (max-width: 1280px) {
+  .newCollections {
+    h1 {
+      font-size: 2.5rem;
+    }
+    hr {
+      width: 10rem;
+      height: 0.25rem;
+    }
+  }
+  .collections {
+    gap: 1.25rem;
+    margin-top: 1.875rem;
+  }
+}
+@media (max-width: 1024px) {
+  .newCollections {
+    h1 {
+      font-size: 1.875rem;
+    }
+    hr {
+      width: 7.5rem;
+      height: 3px;
+    }
+  }
+  .collections {
+    gap: 15px;
+    margin-top: 1.25rem;
+  }
+}
+@media (max-width: 800px) {
+  .newCollections {
+    gap: 6px;
+    h1 {
+      font-size: 1.25rem;
+    }
+    hr {
+      width: 6.25rem;
+    }
+  }
+  .collections {
+    gap: 5px;
+  }
+}
+@media (max-width: 500px) {
+  .collections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}

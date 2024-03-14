@@ -26,3 +26,18 @@
   padding: 3rem;
   padding-bottom: 4.375rem;
 }
+
+@media (max-width: 1280px) {
+  .descriptionBox {
+    margin: 3.75rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .descriptionBox {
+    margin: 3.75rem 1.25rem;
+  }
+  .descriptionBoxDescription {
+    font-size: 14px;
+  }
+}

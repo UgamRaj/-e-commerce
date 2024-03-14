@@ -58,6 +58,101 @@
   justify-content: center;
   width: 50%;
   img {
-    width: 50%;
+    width: 80%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .heroLeft {
+    padding-left: 6.25rem;
+    h2 {
+      font-size: 1.375rem;
+    }
+    p {
+      font-size: 3.75rem;
+    }
+  }
+  .heroHandIcon img {
+    width: 5rem;
+  }
+  .heroLatestBtn {
+    gap: 0.625rem;
+    width: 15.625rem;
+    height: 3.75rem;
+    margin-top: 1.25rem;
+    font-size: 1.125rem;
+  }
+
+  .heroRight img {
+    width: 31.25rem;
+  }
+}
+@media (max-width: 1024px) {
+  .heroLeft {
+    padding-left: 5rem;
+    h2 {
+      font-size: 1.25rem;
+    }
+    p {
+      font-size: 3.125rem;
+    }
+  }
+  .heroHandIcon img {
+    width: 4.0625rem;
+  }
+  .heroLatestBtn {
+    width: 13.75rem;
+    height: 3.125rem;
+    font-size: 1rem;
+  }
+
+  .heroRight img {
+    width: 25rem;
+  }
+}
+@media (max-width: 800px) {
+  .heroLeft {
+    padding-left: 1.875rem;
+    h2 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 2.5rem;
+    }
+  }
+  .heroHandIcon img {
+    width: 3.125rem;
+  }
+  .heroLatestBtn {
+    width: 10.9375rem;
+    height: 2.5rem;
+    font-size: 0.8125rem;
+  }
+
+  .heroRight img {
+    width: 18.75rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    flex-direction: column;
+  }
+  .heroRight {
+    display: none;
+  }
+  .heroLeft h2 {
+    font-size: 1.125rem;
+  }
+  .heroLeft p {
+    font-size: 3.125rem;
+  }
+  .heroHandIcon img {
+    width: 55px;
+  }
+  .heroLatestBtn {
+    width: 12.5rem;
+    height: 2.8125rem;
+    font-size: 0.875rem;
   }
 }

@@ -67,3 +67,55 @@
   font-size: 1.125rem;
   font-weight: 500;
 }
+
+@media (max-width: 1280px) {
+  .loginSignup {
+    padding-top: 3.125rem;
+  }
+  .loginSignupContainer {
+    width: auto;
+    max-width: 31.25rem;
+    max-height: 31.25rem;
+
+    h1 {
+      margin: 10px 0;
+    }
+    button {
+      width: 100%;
+    }
+  }
+  .loginSignupFields {
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+    input {
+      height: 4.0625rem;
+      width: 93%;
+    }
+  }
+  .loginSignupLogin {
+    font-size: 1rem;
+  }
+  .loginSignupAgree {
+    font-size: 14px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .loginSignupContainer {
+    padding: 1.25rem 1.875rem;
+    h1 {
+      font-size: 1.5rem;
+    }
+    button {
+      height: 3.125rem;
+      font-size: 1rem;
+    }
+  }
+  .loginSignupFields {
+    margin-top: 1.25rem;
+    input {
+      height: 50px;
+    }
+  }
+}
