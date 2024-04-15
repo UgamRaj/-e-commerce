@@ -1,6 +1,8 @@
 import UserModel from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 const userRegistration = async (req, res) => {
   try {
@@ -57,6 +59,7 @@ const userLogin = async (req, res) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET_KEY);
+    console.log("🚀 ~ userLogin ~ token:", token);
     return res.json({
       success: true,
       message: "Logged in successfully",

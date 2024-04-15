@@ -10,6 +10,7 @@ import Footer from "./Components/Footer/Footer";
 import menBanner from "./assets/banner_mens.png";
 import womenBanner from "./assets/banner_women.png";
 import kidBanner from "./assets/banner_kids.png";
+import Address from "./Components/Address/Address";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/product/:productId" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSingup />} />
+          <Route path="/deliveryAddress" element={<Address />} />
         </Routes>
         <Footer />
       </BrowserRouter>

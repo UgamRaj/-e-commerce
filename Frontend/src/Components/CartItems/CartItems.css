@@ -6,6 +6,15 @@
     border: 0;
   }
 }
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blinking-heading {
+  animation: blink 1s linear infinite;
+}
 
 .cartItemsFormatMain {
   display: grid;
@@ -59,6 +68,11 @@
   }
 }
 
+.cartItemsTotal .cartItemBtnDisabled {
+  background-color: #ff5a5a86;
+  cursor: unset;
+}
+
 .cartItemsTotalItems {
   display: flex;
   justify-content: space-between;
@@ -71,6 +85,9 @@
   p {
     color: #555;
   }
+}
+.cartItemsPromoAddressContainer {
+  /* border: 1px solid red; */
 }
 
 .cartItemsPromoBox {

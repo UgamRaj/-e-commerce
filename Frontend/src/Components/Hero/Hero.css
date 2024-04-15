@@ -58,7 +58,7 @@
   justify-content: center;
   width: 50%;
   img {
-    width: 80%;
+    width: 60%;
   }
 }
 
@@ -84,7 +84,7 @@
   }
 
   .heroRight img {
-    width: 31.25rem;
+    width: 27.25rem;
   }
 }
 @media (max-width: 1024px) {

@@ -1,0 +1,40 @@
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  h2 {
+    text-align: center;
+    margin: 1rem 0;
+    color: #15abbfa8;
+  }
+}
+
+.input-field {
+  width: 96%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #007bff;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  outline: none;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}

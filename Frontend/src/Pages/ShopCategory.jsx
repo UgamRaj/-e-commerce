@@ -3,13 +3,34 @@ import "./ShopCategory.css";
 // import { ShopContext } from "../Context/ShopContext";
 import dropDownIcon from "../assets/dropdown_icon.png";
 import Items from "../Components/Items/Item";
-import all_product from "../assets/all_product";
+// import allProduct from "../assets/all_product";
+// import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { fetchDataFromApi } from "../utils/Api";
 
 const ShopCategory = ({ banner, mainCategory }) => {
   // const { all_product } = useContext(ShopContext);
 
+  // const { allProduct } = useSelector((state) => state.product);
+  const [allProduct, setAllProduct] = useState([]);
+
+  const getAllProd = async () => {
+    try {
+      const res = await fetchDataFromApi("allproducts");
+      setAllProduct(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getAllProd();
+  }, []);
+  // console.log(allProduct.then((res) => console.log(res)));
+  // console.log("🚀 ~ ShopCategory ~ allProduct:", getAllProd());
+
   return (
     <div className="shopCategory">
+      {/* {console.log(allproduct)} */}
       <img className="shopCategoryBanner" src={banner} alt="banner" />
       <div className="shopCategoryIndexSort">
         <p>
@@ -21,17 +42,17 @@ const ShopCategory = ({ banner, mainCategory }) => {
       </div>
 
       <div className="shopCategoryProducts">
-        {all_product.map(
-          ({ category, id, name, image, new_price, old_price }, i) => {
+        {allProduct.map(
+          ({ category, _id, title, image, newPrice, oldPrice }, i) => {
             if (mainCategory === category) {
               return (
                 <Items
                   key={i}
-                  id={id}
-                  name={name}
+                  id={_id}
+                  name={title}
                   image={image}
-                  newPrice={new_price}
-                  oldPrice={old_price}
+                  newPrice={newPrice}
+                  oldPrice={oldPrice}
                 />
               );
             } else {

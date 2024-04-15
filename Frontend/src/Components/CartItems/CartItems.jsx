@@ -2,30 +2,74 @@
 import "./CartItems.css";
 // import { ShopContext } from "../../Context/ShopContext";
 import removeIcon from "../../assets/cart_cross_icon.png";
-import all_product from "../../assets/all_product";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../Store/ProductSlice";
+// import all_product from "../../assets/all_product";
+// import { useDispatch, useSelector } from "react-redux";
+// import { removeFromCart } from "../../Store/ProductSlice";
+import axios from "axios";
+import { useEffect, useState } from "react";
+// import { fetchDataFromMongoDbStore } from "../../Store/ProductSlice";
+import Address from "../Address/Address";
 
 const CartItems = () => {
-  const { cartItems } = useSelector((state) => state.product);
-  console.log(cartItems);
-  const dispatch = useDispatch();
+  // const { productCart } = useSelector((state) => state.product);
+  // console.log("🚀 ~ CartItems ~ productCart:", productCart);
 
-  const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let itemInfo = all_product.find((product) => product.id === +item);
-        totalAmount += itemInfo.new_price * cartItems[item];
-      }
+  // const dispatch = useDispatch();
+  const [allProduct, setAllProduct] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+  const [isAddress, setIsAddress] = useState(false);
+
+  const fetchDataFrom = async () => {
+    const BASR_URL = "http://localhost:10000/v1/cart";
+    try {
+      const res = await axios.get(
+        BASR_URL,
+
+        {
+          headers: {
+            // Accept: "application/json",
+            authorization: localStorage.getItem("authToken"),
+          },
+        }
+      );
+      // console.log(`res.data`, res);
+      setCartTotal(res.data.cartTotal);
+      setAllProduct(res.data.allProducts);
+    } catch (error) {
+      console.log(error);
+      return error;
     }
-    return totalAmount;
   };
 
-  // const { all_product, cartItems, removeFromCart, getTotalCartAmount } =
-  //   useContext(ShopContext);
+  const removeFromCart = async (item) => {
+    const BASR_URL = "http://localhost:10000/v1/cart/removeFromCart";
+    try {
+      const res = await axios.post(
+        BASR_URL,
+        { item },
+        {
+          headers: {
+            Accept: "application/json",
+            authorization: localStorage.getItem("authToken"),
+          },
+        }
+      );
+      console.log(res.data);
+      fetchDataFrom();
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
 
-  //   console.log(all_product);
+  useEffect(() => {
+    fetchDataFrom();
+    // dispatch(fetchDataFromMongoDbStore());
+  }, []);
+
+  const onProceedToCheckOut = () => {
+    setIsAddress(true);
+  };
 
   return (
     <div className="cartItems">
@@ -39,30 +83,29 @@ const CartItems = () => {
       </div>
       <hr />
 
-      {all_product.map((item) => {
-        if (cartItems[item.id] > 0) {
-          return (
-            <div key={item.id}>
-              <div className="cartItemsFormat cartItemsFormatMain">
-                <img className="cartIconProductIcon" src={item.image} alt="" />
-                <p>{item.name}</p>
-                <p>${item.new_price}</p>
-                <button className="cartItemsQuantity">
-                  {cartItems[item.id]}
-                </button>
-                <p>${item.new_price * cartItems[item.id]}</p>
-                <img
-                  className="cartItemsRemoveIcon"
-                  onClick={() => dispatch(removeFromCart(item.id))}
-                  src={removeIcon}
-                  alt="remove icon"
-                />
-              </div>
-              <hr />
+      {allProduct?.map((item) => {
+        return (
+          <div key={item._doc._id}>
+            <div className="cartItemsFormat cartItemsFormatMain">
+              <img
+                className="cartIconProductIcon"
+                src={item._doc.image}
+                alt="cart image"
+              />
+              <p>{item._doc.title}</p>
+              <p>${item.price}</p>
+              <button className="cartItemsQuantity">{item.quantity}</button>
+              <p>${item.price * item.quantity}</p>
+              <img
+                className="cartItemsRemoveIcon"
+                onClick={() => removeFromCart(item)}
+                src={removeIcon}
+                alt="remove icon"
+              />
             </div>
-          );
-        }
-        return null;
+            <hr />
+          </div>
+        );
       })}
       <div className="cartItemsDown">
         <div className="cartItemsTotal">
@@ -70,7 +113,7 @@ const CartItems = () => {
           <div>
             <div className="cartItemsTotalItems">
               <p>SubTotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>${cartTotal}</p>
             </div>
             <hr />
             <div className="cartItemsTotalItems">
@@ -80,17 +123,26 @@ const CartItems = () => {
             <hr />
             <div className="cartItemsTotalItems">
               <h3>Total</h3>
-              <h3>${getTotalCartAmount()}</h3>
+              <h3>${cartTotal}</h3>
             </div>
           </div>
-          <button>Proceed To Checkout</button>
+          <button
+            className={isAddress ? "cartItemBtnDisabled" : ""}
+            onClick={onProceedToCheckOut}
+            disabled={isAddress}
+          >
+            Proceed To Checkout
+          </button>
         </div>
-        <div className="cartItemsPromoCode">
-          <p>If You Have Promo code, Enter it here</p>
-          <div className="cartItemsPromoBox">
-            <input type="text" placeholder="Promo Code" />
-            <button>Submit</button>
+        <div className="cartItemsPromoAddressContainer">
+          <div className="cartItemsPromoCode">
+            <p>If You Have Promo code, Enter it here</p>
+            <div className="cartItemsPromoBox">
+              <input type="text" placeholder="Promo Code" />
+              <button>Submit</button>
+            </div>
           </div>
+          {isAddress && <Address />}
         </div>
       </div>
     </div>

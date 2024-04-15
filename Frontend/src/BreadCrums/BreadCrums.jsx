@@ -7,7 +7,8 @@ const BreadCrums = ({ product }) => {
       Home
       <img src={arrwoIcon} alt="arrwoIcon" />
       Shop <img src={arrwoIcon} alt="arrwoIcon" />
-      {product.category} <img src={arrwoIcon} alt="arrwoIcon" /> {product.name}
+      {product?.category} <img src={arrwoIcon} alt="arrwoIcon" />{" "}
+      {product?.name}
     </div>
   );
 };

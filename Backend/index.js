@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+// import userRoutes from "./routes/userRoute.js";
+import productRoutes from "./routes/productRoute.js";
 import multer from "multer";
 import path from "path";
 import cors from "cors";
 import userRoutes from "./routes/userRoute.js";
+import cartRoute from "./routes/cartRoute.js";
 
 const app = express();
 dotenv.config();
@@ -20,7 +23,12 @@ mongoose
 
 // App routes
 
+// app.use("/api/v1/user", userRoutes);
+
+// app.use("/api/v1/product", productRoutes);
+app.use("/v1/product", productRoutes);
 app.use("/v1/user", userRoutes);
+app.use("/v1/cart", cartRoute);
 
 //! Image Storage Engine
 const storage = multer.diskStorage({
